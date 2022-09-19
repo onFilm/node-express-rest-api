@@ -1,0 +1,1 @@
+[![node-express-rest-api-ci-cd](https://github.com/onFilm/node-express-rest-api/actions/workflows/cicd.yml/badge.svg?branch=main)](https://github.com/onFilm/node-express-rest-api/actions/workflows/cicd.yml)

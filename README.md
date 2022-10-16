@@ -19,5 +19,6 @@
 	cd node-express-rest-api/
 	docker build -t node-express-rest-api .
 	docker run -d -p 3000:3000 --name rest-api-app node-express-rest-api
-	with bind mount for syncing source code
+with bind mount for syncing source code
+
 	docker run -v $(pwd):/src -d -p 3000:3000 --name rest-api-app node-express-rest-api

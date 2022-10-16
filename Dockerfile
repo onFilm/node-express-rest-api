@@ -16,4 +16,4 @@ COPY . .
 #expose port for
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start-watch"]

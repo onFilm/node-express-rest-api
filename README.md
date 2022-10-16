@@ -13,12 +13,25 @@
 	docker image rm <image_id>
 ###### Enter into docker File System
 	docker exec -it <container_name> bash
+###### Docker logs
+    docker logs <container_name>    
+###### Docker build image    
+	docker build -t <image_name> .
+###### Docker run container
+	docker run -d -p 3000:3000 --name <container_name> <image_name>
+###### with bind mount for syncing source code -for windows (CMD and Powershell)
+    docker run -v %cd%:/src -d -p 3000:3000 --name rest-api-app node-express-rest-api
+    docker run -v ${pwd}:/src -d -p 3000:3000 --name rest-api-app node-express-rest-api
+###### with bind mount for syncing source code -for Linux 
+	docker run -v $(pwd):/src -d -p 3000:3000 --name rest-api-app node-express-rest-api
+###### with bind mount plus anonymous valume  
+    docker run -v %cd%:/src -v /src/node_modules -d -p 3000:3000 --name rest-api-app node-express-rest-api
 
 **Docker command for this project - for developer**
+running docker-compose.yml (-d for detached mode, --build for forcefully build)
 
-	cd node-express-rest-api/
-	docker build -t node-express-rest-api .
-	docker run -d -p 3000:3000 --name rest-api-app node-express-rest-api
-with bind mount for syncing source code
+    docker-compose up -d --build
 
-	docker run -v $(pwd):/src -d -p 3000:3000 --name rest-api-app node-express-rest-api
+shutdown docker-compose
+
+    docker-compose down -v  

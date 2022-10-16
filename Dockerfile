@@ -13,7 +13,10 @@ RUN npm install
 #copy files
 COPY . .
 
+#environment
+ENV PORT 3000
+
 #expose port for
-EXPOSE 3000
+EXPOSE $PORT
 
 CMD ["npm", "run", "start-watch"]

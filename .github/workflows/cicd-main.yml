@@ -46,6 +46,7 @@ jobs:
         with:
           context: ./
           file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-express-rest-api:latest
       - name: Run the image in a container

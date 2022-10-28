@@ -18,13 +18,13 @@ jobs:
           port: 22
           script: |
             #!/bin/sh
-            
+
             # Just run below command - ignore below command. [not working]
             # sudo docker rm $(sudo docker ps -a | grep node-express-rest-api-app | awk '{ print $1 }') -f
-            
+
             # Stop running react-todolist Docker Containers
             sudo docker rm react-todolist-app -f
-            
+
             # Free up space
             sudo docker system prune -a
 

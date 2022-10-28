@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Analyze with SonarCloud         
-        uses: SonarSource/sonarcloud-github-action@de2e56b42aa84d0b1c5b622644ac17e505c9a049
+        uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -30,8 +30,8 @@ jobs:
             #-Dsonar.tests= # optional. For more info about Code Coverage, please refer to https://docs.sonarcloud.io/enriching/test-coverage/overview/
             # Adds more detail to both client and server-side analysis logs, activating DEBUG mode for the scanner, and adding client-side environment variables and system properties to the server-side log of analysis report processing.
             #-Dsonar.verbose= # optional, default is false   
-            
-  build_test:
+
+  build-test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     strategy:
@@ -39,17 +39,21 @@ jobs:
         node-version: [14.x]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Git checkout
       - uses: actions/checkout@v2
-      - name: setup node
+
+      # Setup node 
+      - name: Setup Node
         uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node-version }}
+
       # install applicaion dependencies
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
+
       # build and test the apps     
-      - name: build
-        run: |
-          npm test
+      - name: Run Tests
+        run: npm test

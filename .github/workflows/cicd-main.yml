@@ -1,5 +1,5 @@
 # This workflow will build a Node Express app
-name: node-express-rest-api-ci-cd
+name: cicd-main
 
 on:
   push:

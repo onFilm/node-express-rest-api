@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 #environment
-ENV PORT 3000
+ENV PORT 3001
 
 #expose port for
 EXPOSE $PORT

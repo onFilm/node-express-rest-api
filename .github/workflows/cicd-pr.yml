@@ -1,5 +1,5 @@
 # This workflow will build a Node Express app
-name: node-express-rest-api-ci-cd-pr-process
+name: cicd-pr
 
 on:
   pull_request:

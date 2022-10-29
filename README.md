@@ -18,14 +18,14 @@
 ###### Docker build image    
 	docker build -t <image_name> .
 ###### Docker run container
-	docker run -d -p 3000:3000 --name <container_name> <image_name>
+	docker run -d -p 3001:3001 --name <container_name> <image_name>
 ###### with bind mount for syncing source code -for windows (CMD and Powershell)
-    docker run -v %cd%:/src -d -p 3000:3000 --name rest-api-app node-express-rest-api
-    docker run -v ${pwd}:/src -d -p 3000:3000 --name rest-api-app node-express-rest-api
+    docker run -v %cd%:/src -d -p 3001:3001 --name rest-api-app node-express-rest-api
+    docker run -v ${pwd}:/src -d -p 3001:3001 --name rest-api-app node-express-rest-api
 ###### with bind mount for syncing source code -for Linux 
-	docker run -v $(pwd):/src -d -p 3000:3000 --name rest-api-app node-express-rest-api
+	docker run -v $(pwd):/src -d -p 3001:3001 --name rest-api-app node-express-rest-api
 ###### with bind mount plus anonymous valume  
-    docker run -v %cd%:/src -v /src/node_modules -d -p 3000:3000 --name rest-api-app node-express-rest-api
+    docker run -v %cd%:/src -v /src/node_modules -d -p 3001:3001 --name rest-api-app node-express-rest-api
 
 **Docker command for this project - for developer**
 running docker-compose.yml (-d for detached mode, --build for forcefully build)

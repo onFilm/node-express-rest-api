@@ -5,7 +5,7 @@ services:
     ports: 
       - "3001:3001"
     volumes:
-      - .:/src:ro
+      - .:/src
       - /src/node_modules
     environment:
       - PORT=3001

@@ -32,17 +32,28 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
     needs: [code-analysis]
-    strategy:
-      matrix:
-        node-version: [14.x]
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@master
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
       - name: Install dependencies
         run: npm install
       - name: Run Tests
         run: npm test
+  run-api-tests:
+    runs-on: ubuntu-latest
+    needs: [build-test]
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+      - name: Create Docker Network
+        run: docker network create local
+      - name: Docker network
+        run: docker network ls && docker network inspect local
+      - name: Build node-rest-api-app docker container
+        run: docker build -t image . && docker run -d -p 3001:3001 -v $(pwd):/src -v /src/node_modules --net local --name app image
+      - name: Run API Tests
+        run: docker run -d --net local --name rest-api-tests-app mail2prajwal12/rest-web-service-api-test

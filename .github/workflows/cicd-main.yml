@@ -11,16 +11,13 @@ jobs:
   build-test:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
     steps:
       - name: Github Checkout
         uses: actions/checkout@v2
       - name: setup node
         uses: actions/setup-node@master
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
       - name: Install dependencies
         run: npm install
       - name: build

@@ -46,11 +46,8 @@ jobs:
   run-api-tests:
     runs-on: ubuntu-latest
     needs: [build-test]
-    services:
-      service1:
-        image: mail2prajwal12/rest-web-service-api-test:latest
-        ports:
-          - 3001:3001
     steps:
+      - name: Setup app docker
+        run: make build && make run
       - name: Run API Tests
-        run: docker run -v $(pwd):/src -v /src/node_modules -d -p 3001:3001 --name rest-api-tests-app mail2prajwal12/rest-web-service-api-test
+        run: docker run -v $(pwd):/src -v /src/node_modules -d --name rest-api-tests-app mail2prajwal12/rest-web-service-api-test

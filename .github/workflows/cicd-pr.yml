@@ -49,9 +49,11 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
+      - name: Docker network
+        uses: docker network ls && docker network inspect
       - name: Create Docker Network
         run: docker network create local
       - name: Build node-rest-api-app docker container
-        run: docker run -d -p 3001:3001 -v .:/src -v /src/node_modules --network local --name node-rest-api-app .
+        run: docker build -t image . && docker run -d -p 3001:3001 -v .:/src -v /src/node_modules --net local --name app image
       - name: Run API Tests
-        run: docker run -d --network local --name rest-api-tests-app mail2prajwal12/rest-web-service-api-test
+        run: docker run -d --net local --name rest-api-tests-app mail2prajwal12/rest-web-service-api-test

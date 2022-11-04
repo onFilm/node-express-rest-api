@@ -3,6 +3,6 @@ container:
 image:
 	sudo docker images 
 build:
-	sudo docker build -t <image_name> .
+	sudo docker build -t node-express-rest-api .
 run:
-	sudo docker run -v \%cd%\:/src -v /src/node_modules -d -p 3001\:3001 --name rest-api-app node-express-rest-api
+	sudo docker run -v $(pwd):/src -v /src/node_modules -d -p 3001:3001 --name node-rest-api-app node-express-rest-api

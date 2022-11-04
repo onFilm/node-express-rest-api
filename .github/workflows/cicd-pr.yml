@@ -50,7 +50,7 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
       - name: Docker network
-        uses: docker network ls && docker network inspect
+        run: docker network ls && docker network inspect
       - name: Create Docker Network
         run: docker network create local
       - name: Build node-rest-api-app docker container

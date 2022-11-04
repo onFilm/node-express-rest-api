@@ -49,7 +49,9 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
-      - name: Run docker-compose
-        run: docker-compose up -d --build
+      - name: Create Docker Network
+        run: docker network create local
+      - name: Build node-rest-api-app docker container
+        run: docker run -d -p 3001:3001 -v .:/src -v /src/node_modules --network local --name node-rest-api-app .
       - name: Run API Tests
-        run: docker run -d --name rest-api-tests-app mail2prajwal12/rest-web-service-api-test
+        run: docker run -d --network local --name rest-api-tests-app mail2prajwal12/rest-web-service-api-test

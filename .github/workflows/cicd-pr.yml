@@ -54,4 +54,4 @@ jobs:
       - name: Run API Tests
         run: docker run --network host --name rest-api-tests-app mail2prajwal12/rest-web-service-api-test
       - name: Docker copy file to local
-        run: docker cp rest-api-tests-app:/reports/cucumber-report.html $(pwd)
+        run: docker cp rest-api-tests-app:/src/reports/cucumber-report.html $(pwd)

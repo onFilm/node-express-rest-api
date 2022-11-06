@@ -52,6 +52,6 @@ jobs:
       - name: Build node-rest-api-app docker container
         run: docker build -t image . && docker run -d -p 3001:3001 -v $(pwd):/src -v /src/node_modules --name app image
       - name: Run API Tests
-        run: docker run -d --network host --name rest-api-tests-app mail2prajwal12/rest-web-service-api-test
+        run: docker run --network host --name rest-api-tests-app mail2prajwal12/rest-web-service-api-test
       - name: Docker copy file to local
         run: docker cp rest-api-tests-app:/reports/cucumber-report.html $(pwd)
